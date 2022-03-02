@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAikRM7+jygUOKPvwwK/ruFAAAAAACAAAAAAAQZgAAAAEAACAAAADczP8UtKPyLDiFwQfzEQp/xCyKxhtpJApWxT4PX+wTSgAAAAAOgAAAAAIAACAAAAAMJnvCY+OscNtKN9NwMQiAz9P6n3++xZcsfodhSsNHSYAAAABf59PwXuw2I0ny5R1jro2MVuHJEAICCP/CJUtQ6gNGsxcXHxpJOsJhYqHapFaGHnEXZoDTGr7ZUetmui6kpdEeuBnpnK0JFEdXoP8kg54pgRUJzGJwKaHlQZWUn5NmkMyzNTO6JFWOnq7B0a/aL0yXiWdnCTPwASH5VbWSW+1TpEAAAAAShc/g/sOsYXcnHaZc9UGwTEl8fjU38O2dOBqMhM40dKPtSGGA6Vu13IO5sPAoFkzl3VBIPwmSiCwitmFuhx3e</EncryptedPassword>
+    <History>False|2022-02-24T16:04:51.6384939Z;True|2022-02-24T16:55:21.6478096+01:00;True|2022-02-24T16:52:33.7135963+01:00;False|2022-02-24T16:48:23.6612760+01:00;False|2022-02-24T16:45:00.9698112+01:00;False|2022-02-24T16:43:52.1735631+01:00;False|2022-02-24T16:43:07.3447467+01:00;False|2022-02-24T16:40:36.3596864+01:00;</History>
+  </PropertyGroup>
+  <ItemGroup>
+    <EFMigrations Include="TodoApi.Models.TodoContext">
+      <Value>Data Source=tcp:seppestodoapidbserver.database.windows.net,1433%3bInitial Catalog=SeppesTodoApi_db%3bUser Id=seppe%40seppestodoapidbserver%3bPassword=Test123!</Value>
+    </EFMigrations>
+  </ItemGroup>
+</Project>
