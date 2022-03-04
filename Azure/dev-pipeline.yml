@@ -32,16 +32,17 @@ stages:
       displayName: 'dotnet build $(buildConfiguration)'
 
     - task: DotNetCoreCLI@2
-      displayName: 'dotnet publish --configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)'
+      displayName: 'Publish the project - $(buildConfiguration)'
       inputs:
         command: publish
         publishWebProjects: false
         projects: 'TodoApi/TodoApi.csproj'
-        arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
+        arguments: '--no-build --configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)/$(buildConfiguration)'
         zipAfterPublish: true
 
-    - task: PublishBuildArtifacts@1
-      displayName: 'publish artifacts'
+    - publish: '$(Build.ArtifactStagingDirectory)'
+        artifact: drop 
+      
 
 - stage: 'Dev'
   displayName: 'Deploy to the dev environment'
