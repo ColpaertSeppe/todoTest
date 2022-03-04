@@ -62,12 +62,18 @@ stages:
     - publish: '$(Build.ArtifactStagingDirectory)'
       artifact: drop
 
+    - bash: |
+        echo "sourcebranch= $Build.SourceBranchName"
+        echo "releasebranch = $releaseBranchName"
+        
+
 - stage: 'Dev'
-  displayName: 'Deploy to the dev environment - $(variables["Build.SourceBranchName"]) - variables["releaseBranchName"]'
+  displayName: 'Deploy to the dev environment'
   dependsOn: Build
   condition: 
       succeeded()
   jobs:
+  
   - deployment: Deploy
     pool:
       vmImage: 'ubuntu-20.04'
