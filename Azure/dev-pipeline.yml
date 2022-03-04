@@ -63,7 +63,7 @@ stages:
       artifact: drop
 
 - stage: 'Dev'
-  displayName: 'Deploy to the dev environment - $(variables['Build.SourceBranchName']) - $(variables['releaseBranchName'])'
+  displayName: 'Deploy to the dev environment - $('Build.SourceBranchName') - $('releaseBranchName')'
   dependsOn: Build
   condition: 
       eq(variables['Build.SourceBranchName'], variables['releaseBranchName'])
