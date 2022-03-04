@@ -27,7 +27,7 @@ steps:
   inputs:
     command: publish
     publishWebProjects: false
-    projects: 'todoTest/TodoApi/TodoApi.csproj'
+    projects: 'TodoApi/TodoApi.csproj'
     arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
     zipAfterPublish: true
 
