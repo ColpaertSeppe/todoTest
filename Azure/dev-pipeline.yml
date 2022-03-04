@@ -66,11 +66,10 @@ stages:
   displayName: 'Deploy to the dev environment'
   dependsOn: Build
   condition: |
-#   and
-#    (
-#      succeeded(),
-#      eq(variables['Build.SourceBranchName'], variables['releaseBranchName'])
-#    )
+    and
+    (  
+      succeeded()
+    )
   jobs:
   - deployment: Deploy
     pool:
