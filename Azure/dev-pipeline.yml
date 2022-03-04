@@ -17,7 +17,7 @@ stages:
       - npm
 
     variables:
-      dotnetSdkVersion: '5.x'
+      dotnetSdkVersion: '6.x'
 
     steps:
     - task: UseDotNet@2
