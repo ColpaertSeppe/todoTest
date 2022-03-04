@@ -1,16 +1,12 @@
-# ASP.NET Core
-# Build and test ASP.NET Core projects targeting .NET Core.
-# Add steps that run tests, create a NuGet package, deploy, and more:
-# https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
-
 trigger:
-- main
+- dev
 
 pool:
   vmImage: ubuntu-latest
 
 variables:
   buildConfiguration: 'Release'
+  releaseBranchName: 'release'
 
 stages:
 - stage: 'Build'
@@ -23,36 +19,38 @@ stages:
 
     steps:
     - task: DotNetCoreCLI@2
+      displayName: 'Restore project dependencies'
       inputs:
-        command: test
-        projects: '**/*Tests/*.csproj'
-        arguments: '--configuration $(buildConfiguration)'
-
-    - script: dotnet build --configuration $(buildConfiguration)
-      displayName: 'dotnet build $(buildConfiguration)'
+        command: 'restore'
+        projects: '**/*.csproj'
+    - task: DotNetCoreCLI@2
+      displayName: 'Build the project - $(buildConfiguration)'
+      inputs:
+        command: 'build'
+        arguments: '--no-restore --configuration $(buildConfiguration)'
+        projects: '**/*.csproj'
 
     - task: DotNetCoreCLI@2
       displayName: 'Publish the project - $(buildConfiguration)'
       inputs:
-        command: publish
+        command: 'publish'
+        projects: '**/*.csproj'
         publishWebProjects: false
-        projects: 'TodoApi/TodoApi.csproj'
-        arguments: '--no-build --configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)/$(buildConfiguration)'
+        arguments: '--no-build --configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)/$(buildConfiguration)'
         zipAfterPublish: true
 
-    - task: PublishBuildArtifacts@1
-      displayName: 'publish artifacts'
-      
+    - publish: '$(Build.ArtifactStagingDirectory)'
+      artifact: drop      
 
 - stage: 'Dev'
   displayName: 'Deploy to the dev environment'
   dependsOn: Build
-  #condition: |
-  #  and
-  #  (
-  #    succeeded(),
-  #    eq(variables['Build.SourceBranchName'], variables['releaseBranchName'])
-  #  )
+  condition: |
+    and
+    (
+      succeeded(),
+      eq(variables['Build.SourceBranchName'], variables['releaseBranchName'])
+    )
   jobs:
   - deployment: Deploy
     pool:
