@@ -66,7 +66,7 @@ stages:
           - download: current
             artifact: drop
           - task: AzureWebApp@1
-            displayName: 'Azure App Service Deploy: website'
+            displayName: 'Azure App Service Deploy: api'
             inputs:
               azureSubscription: 'Resource Manager - todoApp - Dev'
               appName: '$(WebAppNameDev)'
