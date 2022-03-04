@@ -61,17 +61,17 @@ stages:
 
     - publish: '$(Build.ArtifactStagingDirectory)'
       artifact: drop
-
-    - bash: |
-        echo "sourcebranch= $Build.SourceBranchName"
-        echo "releasebranch = $releaseBranchName"
         
 
 - stage: 'Dev'
   displayName: 'Deploy to the dev environment'
   dependsOn: Build
   condition: 
-      succeeded()
+    and
+    (
+      succeeded(),
+      eq(variables['Build.SourceBranchName'], variables['releaseBranchName'])
+    )
   jobs:
   
   - deployment: Deploy
